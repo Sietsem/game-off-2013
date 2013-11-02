@@ -13,6 +13,8 @@ main.prototype.init = function () {
 
     var self = this;
 
+    this.world = new World();
+
     this.matrices = new Matrices();
     this.programs = new Programs(function() {
         self.matrices.translate(0, 0, -6);
@@ -28,7 +30,6 @@ main.prototype.init = function () {
         ];
           
         gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
-
         setInterval(function () { self.onTick(); }, 16);
     });
 }
@@ -54,6 +55,7 @@ main.prototype.onTick = function () {
 }
 
 main.prototype.logic = function (delta) {
+    this.world.logic(delta);
 }
 
 main.prototype.render = function () {

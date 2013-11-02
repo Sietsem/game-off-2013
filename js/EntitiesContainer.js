@@ -4,11 +4,11 @@ function EntitiesContainer () {
 	this.entities = [];
 }
 
-EntitiesContainer.prototype.spawn = function (entity) {
+EntitiesContainer.prototype.add = function (entity) {
 	this.entities.push(entity);
 }
 
-EntitiesContainer.prototype.kill = function (entity) {
+EntitiesContainer.prototype.remove = function (entity) {
 	var index = this.entities.indexOf(entity);
 	if (index < 0) return false;
 
@@ -17,7 +17,7 @@ EntitiesContainer.prototype.kill = function (entity) {
 }
 
 EntitiesContainer.prototype.loop = function (context, callback) {
-	for (var entity : this.entities) {
-		callback.call(context, entity);
+	for (var key in this.entities) {
+		callback.call(context, this.entities[key]);
 	}
 }

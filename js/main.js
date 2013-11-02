@@ -5,10 +5,12 @@ function main () {
 
 main.prototype.init = function () {
     this.canvas = document.getElementById("glcanvas");
+    Input.setMouseTarget(this.canvas);
     this.width  = this.canvas.width;
     this.height = this.canvas.height;
 
     this.initWebGL();
+
     if(!gl) return;
 
     var self = this;

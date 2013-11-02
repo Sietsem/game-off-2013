@@ -1,6 +1,6 @@
 'use strict';
 
-global.Input = {};
+var Input = {};
 
 /**
  * Create an text form at the given location.
@@ -11,7 +11,7 @@ global.Input = {};
  * @param {string} defaultString What should be already filled in
  * @param {string} textAlign     Alignment of the text inside the form
  */
-global.InputTextform = function(x, y, width, height, defaultString, textAlign) {
+function InputTextform(x, y, width, height, defaultString, textAlign) {
     if (defaultString == undefined) defaultString = '';
     if (textAlign == undefined) textAlign = 'center';
 

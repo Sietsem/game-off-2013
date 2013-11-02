@@ -19,8 +19,6 @@ main.prototype.init = function () {
 
     this.matrices = new Matrices();
     this.programs = new Programs(function() {
-        self.matrices.translate(0, 0, -6);
-
         self.squareVerticesBuffer = gl.createBuffer();
         gl.bindBuffer(gl.ARRAY_BUFFER, self.squareVerticesBuffer);
 
@@ -50,6 +48,9 @@ main.prototype.initWebGL = function () {
 
 main.prototype.onTick = function () {
     var now = (new Date()).getTime();
+    if (this.time == undefined) {
+        this.time = now;
+    }
     var delta = now - this.time;
     this.time = now;
     this.logic(delta);
@@ -72,6 +73,9 @@ main.prototype.render = function () {
 
     this.matrices.perspective(45/180*Math.PI, this.width/this.height, 0.1, 100.0);
 
+    this.matrices.identity();
+    this.matrices.translateV(this.world.player.position);
+    this.matrices.translate(0, 0, -6);
     this.matrices.rotate(0.03, [0, 0.5, 1]);
 
     this.setMatrixUniforms();

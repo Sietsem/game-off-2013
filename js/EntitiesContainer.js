@@ -16,7 +16,7 @@ EntitiesContainer.prototype.kill = function (entity) {
 	return true;
 }
 
-EntitiesContainer.prototype.loop = function (callback, context) {
+EntitiesContainer.prototype.loop = function (context, callback) {
 	for (var entity : this.entities) {
 		callback.call(context, entity);
 	}

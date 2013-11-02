@@ -8,17 +8,7 @@
         <script type="text/javascript" src="js/gfx/Program.js"></script>
         <script type="text/javascript" src="js/gfx/Matrices.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
-        <script id="main-fs" src="shaders/main.fs" type="x-shader/x-fragment"></script>
-        <script id="main-vs" type="x-shader/x-vertex">
-            attribute vec3 in_Position;
-
-            uniform mat4 mModelView;
-            uniform mat4 mProjection;
-
-            void main(void) {
-                gl_Position = mProjection * mModelView * vec4(in_Position, 1.0);
-            }
-        </script>
+        <script id="main-vs" type="x-shader/x-vertex"></script>
     </head>
     <body>
         <center>

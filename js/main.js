@@ -13,13 +13,15 @@ main.prototype.init = function () {
 
     if(!gl) return;
 
+    this.fps = this.fpsTime = 0;
+
     var self = this;
 
     this.world = new World(this);
 
     this.matrices = new Matrices();
     this.programs = new Programs(function() {
-        setInterval(function () { self.onTick(); }, 16);
+        setInterval(function () { self.onTick(); }, 1000/60);
     });
 }
 
@@ -43,8 +45,21 @@ main.prototype.onTick = function () {
     var delta = now - this.time;
     this.time = now;
 
+    var a = window.performance.now();
     this.logic(delta);
     this.render();
+    var a = window.performance.now() - a;
+    document.getElementById("fps").innerHTML = "FPS: " + this.lastFps + "<br>Milliseconds: " + round(a, 3) + "<br>Theoratical fps: " + round(1000/a, 0);
+
+    this.fps++;
+    this.fpsTime += delta;
+
+    if (this.fpsTime > 1000) {
+        console.log(this.fps + " fps");
+        this.fpsTime -= 1000;
+        this.lastFps = this.fps;
+        this.fps = 0;
+    }
 }
 
 main.prototype.logic = function (delta) {

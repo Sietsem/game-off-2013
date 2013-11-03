@@ -38,3 +38,7 @@ Map.prototype.clear = function() {
 Map.prototype.keys = function() {
     return Object.keys(this.map);
 }
+
+function round (a, b) {
+    return Math.round(a*Math.pow(10, b)) / Math.pow(10, b);
+}

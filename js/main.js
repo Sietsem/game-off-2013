@@ -13,15 +13,16 @@ main.prototype.init = function () {
 
     if(!gl) return;
 
-    this.fps = this.fpsTime = 0;
+    this.fps = this.fpsTime = this.tillTick = 0;
 
     var self = this;
 
     this.world = new World(this);
+    this.lastTick = window.performance.now();
 
     this.matrices = new Matrices();
     this.programs = new Programs(function() {
-        setInterval(function () { self.onTick(); }, 1000/60);
+        setInterval(function () { self.onTick(); }, 0);
     });
 }
 
@@ -38,6 +39,17 @@ main.prototype.initWebGL = function () {
 }
 
 main.prototype.onTick = function () {
+    var a = window.performance.now();
+    var delta = a - this.lastTick;
+    this.lastTick = a;
+    this.tillTick += delta;
+    if (this.tillTick >= (1000/60)) {
+        this.onRealTick();
+        this.tillTick %= (1000/60);
+    }
+}
+
+main.prototype.onRealTick = function () {
     var now = (new Date()).getTime();
     if (this.time == undefined) {
         this.time = now;

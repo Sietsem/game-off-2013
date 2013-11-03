@@ -55,14 +55,14 @@ World.prototype.createMesh = function () {
         for (var y = 0; y < maxY; y++) {
             var value = this.map[x][y];
             if (value == 1) {
-                if (this.map[x][y-1] != 1) {
+                /*if (this.map[x][y-1] != 1) {
                     addVertex(x,   0, y, 0.4, 0.4, 0.4, 1);
                     addVertex(x,   1, y, 1.0, 1.0, 1.0, 1);
                     addVertex(x+1, 1, y, 1.0, 1.0, 1.0, 1);
                     addVertex(x+1, 0, y, 0.4, 0.4, 0.4, 1);
                     addVertex(x+1, 1, y, 1.0, 1.0, 1.0, 1);
                     addVertex(x,   0, y, 0.4, 0.4, 0.4, 1);
-                }
+                }*/
                 if (this.map[x][y+1] != 1) {
                     addVertex(x,   0, y+1, 0.4, 0.4, 0.4, 1);
                     addVertex(x,   1, y+1, 1.0, 1.0, 1.0, 1);

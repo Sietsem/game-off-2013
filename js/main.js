@@ -15,21 +15,10 @@ main.prototype.init = function () {
 
     var self = this;
 
-    this.world = new World();
+    this.world = new World(this);
 
     this.matrices = new Matrices();
     this.programs = new Programs(function() {
-        self.squareVerticesBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, self.squareVerticesBuffer);
-
-        var vertices = [
-             0.9,  1.0, 0.0,
-            -0.9,  1.0, 0.0,
-             0.9, -1.0, 0.0,
-            -0.9, -1.0, 0.0
-        ];
-          
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
         setInterval(function () { self.onTick(); }, 16);
     });
 }
@@ -53,6 +42,7 @@ main.prototype.onTick = function () {
     }
     var delta = now - this.time;
     this.time = now;
+
     this.logic(delta);
     this.render();
 }
@@ -62,27 +52,14 @@ main.prototype.logic = function (delta) {
 }
 
 main.prototype.render = function () {
-	this.programs.main.use();
-
     gl.viewport(0, 0, this.width, this.height);
 
-    gl.clearColor(0.0, 0.0, 0.0, 1.0);
+    gl.clearColor(0.0, 0.0, 0.5, 1.0);
     gl.enable(gl.DEPTH_TEST);
     gl.depthFunc(gl.LEQUAL);
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
-    this.matrices.perspective(45/180*Math.PI, this.width/this.height, 0.1, 100.0);
-
-    this.matrices.identity();
-    this.matrices.translateV(this.world.player.position);
-    this.matrices.translate(0, 0, -6);
-    this.matrices.rotate(0.03, [0, 0.5, 1]);
-
-    this.setMatrixUniforms();
-
-    gl.bindBuffer(gl.ARRAY_BUFFER, this.squareVerticesBuffer);
-    gl.vertexAttribPointer(this.programs.main.getAttribLocation("in_Position"), 3, gl.FLOAT, false, 0, 0);
-    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    this.world.render();
 }
 
 main.prototype.setMatrixUniforms = function () {

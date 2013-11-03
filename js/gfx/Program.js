@@ -6,9 +6,9 @@ function Program (name) {
 
 Program.prototype.loadShaders = function (callback) {
     var self = this;
-    $.get("shaders/" + self.name + ".vs", function (data) {
+    $.get("shaders/" + self.name + ".vs?" + Math.random(), function (data) {
         self.vsSource = data;
-        $.get("shaders/" + self.name + ".fs", function (data) {
+        $.get("shaders/" + self.name + ".fs?" + Math.random(), function (data) {
             self.fsSource = data;
 
             self.vertexShader   = self.getShader(gl, self.vsSource, false);
@@ -58,7 +58,7 @@ Program.prototype.getShader = function (gl, source, fragment) {
     gl.compileShader(shader);
 
     if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-        alert("An error occurred compiling the shaders: " + gl.getShaderInfoLog(shader));
+        alert("An error occurred compiling the " + ((fragment) ? "fragment" : "vertex") + " shader: " + gl.getShaderInfoLog(shader));
         return null;
     }
 

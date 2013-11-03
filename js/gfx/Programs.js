@@ -6,6 +6,7 @@ function Programs (callback) {
     this.main = new Program("main");
     this.main.loadShaders(function() {
     	self.main.enableAttribLocation("in_Position");
+    	self.main.enableAttribLocation("in_Color");
 
     	callback();
     });

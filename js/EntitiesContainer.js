@@ -17,7 +17,8 @@ EntitiesContainer.prototype.remove = function (entity) {
 }
 
 EntitiesContainer.prototype.loop = function (context, callback) {
-	for (var key in this.entities) {
-		callback.call(context, this.entities[key]);
+	//for (var key in this.entities) {
+	for (var i = 0; i < this.entities.length; i++) {
+		callback.call(context, this.entities[i]);
 	}
 }

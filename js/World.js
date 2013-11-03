@@ -64,17 +64,17 @@ World.prototype.createMesh = function () {
                     addVertex(x,   0, y, 0.4, 0.4, 0.4, 1);
                 }*/
                 if (this.map[x][y+1] != 1) {
-                    addVertex(x,   0, y+1, 0.4, 0.4, 0.4, 1);
-                    addVertex(x,   1, y+1, 1.0, 1.0, 1.0, 1);
                     addVertex(x+1, 1, y+1, 1.0, 1.0, 1.0, 1);
+                    addVertex(x,   1, y+1, 1.0, 1.0, 1.0, 1);
+                    addVertex(x,   0, y+1, 0.4, 0.4, 0.4, 1);
                     addVertex(x+1, 0, y+1, 0.4, 0.4, 0.4, 1);
                     addVertex(x+1, 1, y+1, 1.0, 1.0, 1.0, 1);
                     addVertex(x,   0, y+1, 0.4, 0.4, 0.4, 1);
                 }
                 if (this.map[x-1] == undefined || this.map[x-1][y] != 1) {
-                    addVertex(x, 0, y,   0.4, 0.4, 0.4, 1);
-                    addVertex(x, 1, y,   1.0, 1.0, 1.0, 1);
                     addVertex(x, 1, y+1, 1.0, 1.0, 1.0, 1);
+                    addVertex(x, 1, y,   1.0, 1.0, 1.0, 1);
+                    addVertex(x, 0, y,   0.4, 0.4, 0.4, 1);
                     addVertex(x, 0, y+1, 0.4, 0.4, 0.4, 1);
                     addVertex(x, 1, y+1, 1.0, 1.0, 1.0, 1);
                     addVertex(x, 0, y,   0.4, 0.4, 0.4, 1);
@@ -83,13 +83,13 @@ World.prototype.createMesh = function () {
                     addVertex(x+1, 0, y,   0.4, 0.4, 0.4, 1);
                     addVertex(x+1, 1, y,   1.0, 1.0, 1.0, 1);
                     addVertex(x+1, 1, y+1, 1.0, 1.0, 1.0, 1);
-                    addVertex(x+1, 0, y+1, 0.4, 0.4, 0.4, 1);
-                    addVertex(x+1, 1, y+1, 1.0, 1.0, 1.0, 1);
                     addVertex(x+1, 0, y,   0.4, 0.4, 0.4, 1);
+                    addVertex(x+1, 1, y+1, 1.0, 1.0, 1.0, 1);
+                    addVertex(x+1, 0, y+1, 0.4, 0.4, 0.4, 1);
                 }
-                addVertex(x,   1, y,   1.0, 1.0, 1.0, 1);
-                addVertex(x+1, 1, y,   1.0, 1.0, 1.0, 1);
                 addVertex(x+1, 1, y+1, 1.0, 1.0, 1.0, 1);
+                addVertex(x+1, 1, y,   1.0, 1.0, 1.0, 1);
+                addVertex(x,   1, y,   1.0, 1.0, 1.0, 1);
                 addVertex(x,   1, y+1, 1.0, 1.0, 1.0, 1);
                 addVertex(x+1, 1, y+1, 1.0, 1.0, 1.0, 1);
                 addVertex(x,   1, y,   1.0, 1.0, 1.0, 1);

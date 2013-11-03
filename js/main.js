@@ -81,6 +81,8 @@ main.prototype.logic = function (delta) {
 main.prototype.render = function () {
     gl.viewport(0, 0, this.width, this.height);
 
+    gl.cullFace(gl.BACK);
+    gl.enable(gl.CULL_FACE);
     gl.clearColor(0.0, 0.0, 0.5, 1.0);
     gl.enable(gl.DEPTH_TEST);
     gl.depthFunc(gl.LEQUAL);

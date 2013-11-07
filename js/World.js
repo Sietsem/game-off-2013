@@ -31,15 +31,8 @@ World.prototype.logic = function (delta) {
 World.prototype.createMesh = function () {
     var maxX = this.map.length;
     var maxY = this.map[0].length;
-    var vertices = [
-           0, 0, maxY, 0.4, 0.4, 0.4, 1.0,
-        maxX, 0, maxY, 0.4, 0.4, 0.4, 1.0,
-           0, 0,    0, 0.4, 0.4, 0.4, 1.0,
 
-           0, 0,    0, 0.4, 0.4, 0.4, 1.0,
-        maxX, 0, maxY, 0.4, 0.4, 0.4, 1.0,
-        maxX, 0,    0, 0.4, 0.4, 0.4, 1.0,
-    ];
+    var vertices = [];
     var addVertex = function (x, y, z, r, g, b, a) {
         vertices[pos+0] = x;
         vertices[pos+1] = y;
@@ -96,6 +89,13 @@ World.prototype.createMesh = function () {
             }
         }
     }
+    addVertex(0, 0, maxY, 0.4, 0.4, 0.4, 1.0);
+    addVertex(maxX, 0, maxY, 0.4, 0.4, 0.4, 1.0);
+    addVertex(0, 0,    0, 0.4, 0.4, 0.4, 1.0);
+
+    addVertex(0, 0,    0, 0.4, 0.4, 0.4, 1.0);
+    addVertex(maxX, 0, maxY, 0.4, 0.4, 0.4, 1.0);
+    addVertex(maxX, 0,    0, 0.4, 0.4, 0.4, 1.0);
     return vertices;
 }
 

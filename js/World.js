@@ -36,9 +36,9 @@ World.prototype.createMesh = function () {
         maxX, 0, maxY, 0.4, 0.4, 0.4, 1.0,
            0, 0,    0, 0.4, 0.4, 0.4, 1.0,
 
-        maxX, 0,    0, 0.4, 0.4, 0.4, 1.0,
-        maxX, 0, maxY, 0.4, 0.4, 0.4, 1.0,
            0, 0,    0, 0.4, 0.4, 0.4, 1.0,
+        maxX, 0, maxY, 0.4, 0.4, 0.4, 1.0,
+        maxX, 0,    0, 0.4, 0.4, 0.4, 1.0,
     ];
     var addVertex = function (x, y, z, r, g, b, a) {
         vertices[pos+0] = x;

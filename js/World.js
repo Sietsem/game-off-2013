@@ -2,9 +2,12 @@
 
 function World (main) {
     this.main = main;
+
+    this.camera = new Camera(this);
+
     this.entities = new EntitiesContainer();
 
-    this.player = new EntityPlayer();
+    this.player = new EntityPlayer(this);
     this.spawn(this.player);
 
     this.map = [];
@@ -99,18 +102,22 @@ World.prototype.createMesh = function () {
     return vertices;
 }
 
-World.prototype.render = function () {
+World.prototype.render = function (delta) {
     this.main.programs.main.use();
+
+    this.entities.loop(this, function(entity) { entity.render(); });
 
     this.main.matrices.perspective(45/180*Math.PI, this.main.width/this.main.height, 0.1, 1000.0);
 
     this.main.matrices.identity();
     //this.main.matrices.translate(0, 6, 0);
-    this.main.matrices.rotate(50/180*Math.PI, [1, 0, 0]);
-    this.main.matrices.translateV([-this.player.position[0], -this.player.position[1], -this.player.position[2]]);
-    this.main.matrices.translate(0, -8, 0);
 
-    this.main.setMatrixUniforms();
+    /*this.main.matrices.rotate(50/180*Math.PI, [1, 0, 0]);
+    this.main.matrices.translateV([-this.player.position[0], -this.player.position[1], -this.player.position[2]]);
+    this.main.matrices.translate(0, -8, -7);
+    this.main.matrices.translate(-this.player.width/2, 0, 0);*/
+
+    this.camera.setMatrix(delta);
 
     if (this.vbo == undefined) {
         this.vbo = gl.createBuffer();

@@ -59,7 +59,7 @@ main.prototype.onRealTick = function () {
 
     var a = window.performance.now();
     this.logic(delta);
-    this.render();
+    this.render(delta);
     var a = window.performance.now() - a;
     document.getElementById("fps").innerHTML = "FPS: " + this.lastFps + "<br>Milliseconds: " + round(a, 3) + "<br>Theoratical fps: " + round(1000/a, 0);
 
@@ -78,7 +78,7 @@ main.prototype.logic = function (delta) {
     this.world.logic(delta);
 }
 
-main.prototype.render = function () {
+main.prototype.render = function (delta) {
     gl.viewport(0, 0, this.width, this.height);
 
     gl.cullFace(gl.BACK);
@@ -88,7 +88,7 @@ main.prototype.render = function () {
     gl.depthFunc(gl.LEQUAL);
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
-    this.world.render();
+    this.world.render(delta);
 }
 
 main.prototype.setMatrixUniforms = function () {

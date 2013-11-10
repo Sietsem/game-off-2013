@@ -24,3 +24,7 @@ Matrices.prototype.translate = function (x, y, z) {
 Matrices.prototype.rotate = function (rad, axis) {
 	mat4.rotate(this.modelview, this.modelview, rad, axis);
 }
+
+Matrices.prototype.lookAt = function (eye, center) {
+	mat4.lookAt(this.modelview, eye, center, [0, 1, 0]);
+}

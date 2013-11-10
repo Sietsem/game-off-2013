@@ -42,3 +42,13 @@ Map.prototype.keys = function() {
 function round (a, b) {
     return Math.round(a*Math.pow(10, b)) / Math.pow(10, b);
 }
+
+function cosInterpolate(a, b, x) {
+    var ft = x*Math.PI;
+    var f = (1 - Math.cos(ft)) * 0.5;
+    return a * (1-f) + b * f;
+}
+
+function cosInterpolateV(a, b, x) {
+    return [cosInterpolate(a[0], b[0], x), cosInterpolate(a[1], b[1], x), cosInterpolate(a[2], b[2], x)];
+}

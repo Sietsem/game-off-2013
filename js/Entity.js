@@ -1,6 +1,8 @@
 'use strict';
 
-function Entity () {
+function Entity (world) {
+	this.world = world;
+	
 	this.position = vec3.create();
 	this.acceleration = vec3.create();
 	this.speed = vec3.create();
